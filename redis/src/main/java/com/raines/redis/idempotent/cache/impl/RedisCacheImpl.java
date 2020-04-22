@@ -1,6 +1,6 @@
 package com.raines.redis.idempotent.cache.impl;
 
-import com.raines.raineslearn.redis.idempotent.cache.DataCache;
+import com.raines.redis.idempotent.cache.DataCache;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;

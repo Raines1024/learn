@@ -27,6 +27,7 @@
         <module>interesting</module>
         <module>data-structure</module>
         <module>redis</module>
+        <module>java-base</module>
     </modules>
 
     <!-- 统一jar -->

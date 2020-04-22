@@ -1,6 +1,6 @@
 package com.raines.redis.idempotent;
 
-import com.raines.raineslearn.redis.idempotent.cache.DataCache;
+import com.raines.redis.idempotent.cache.DataCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,6 @@ import java.util.UUID;
  */
 @Service
 public class TokenServiceImpl implements TokenService {
-
 
     @Autowired
     private DataCache dataCache;
@@ -30,7 +29,7 @@ public class TokenServiceImpl implements TokenService {
 // header中不存在tokenw
             token = request.getParameter(Constant.TOKEN_NAME);
             if (StrUtil.isBlank(token)) {
-            // parameter中也不存在token
+                // parameter中也不存在token
                 throw new Exception("parameter中也不存在token");
             }
         }
