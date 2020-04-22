@@ -25,6 +25,8 @@
         <module>comm</module>
         <module>thread</module>
         <module>interesting</module>
+        <module>data-structure</module>
+        <module>redis</module>
     </modules>
 
     <!-- 统一jar -->
