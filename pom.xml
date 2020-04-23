@@ -28,6 +28,9 @@
         <module>data-structure</module>
         <module>redis</module>
         <module>java-base</module>
+        <module>algorithm_thinking</module>
+        <module>java-advanced</module>
+        <module>grokking-algorithms</module>
     </modules>
 
     <!-- 统一jar -->
