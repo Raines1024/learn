@@ -31,6 +31,7 @@
         <module>algorithm_thinking</module>
         <module>java-advanced</module>
         <module>grokking-algorithms</module>
+        <module>webflux</module>
     </modules>
 
     <!-- 统一jar -->
