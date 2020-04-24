@@ -4,5 +4,12 @@
 
 # 项目介绍
 ## comm     通用包
-## interesting      乐玩
+## interesting      interesting
 ## thread       线程
+## data-structure   数据结构
+## redis     redis使用
+## java-base    Java基础
+## algorithm_thinking   编程思想
+## java-advanced     Java进阶
+## grokking-algorithms   《算法图解》代码使用Java语言重写
+## webflux      Spring WebFlux使用

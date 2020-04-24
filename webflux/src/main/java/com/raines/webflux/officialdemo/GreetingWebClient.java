@@ -1,4 +1,4 @@
-package com.raines.webflux.demo;
+package com.raines.webflux.officialdemo;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.ClientResponse;
@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
  * Create a WebClient
  */
 public class GreetingWebClient {
-    private WebClient client = WebClient.create("http://48.122.33.22:8080");
+    private WebClient client = WebClient.create("http://127.0.0.1:8080");
 
     private Mono<ClientResponse> result = client.get()
             .uri("/hello")

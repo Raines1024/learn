@@ -1,6 +1,6 @@
 package com.raines.webflux;
 
-import com.raines.webflux.demo.GreetingWebClient;
+import com.raines.webflux.officialdemo.GreetingWebClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

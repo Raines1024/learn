@@ -1,4 +1,4 @@
-package com.raines.webflux.demo;
+package com.raines.webflux.officialdemo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
