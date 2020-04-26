@@ -16,6 +16,10 @@ import io.netty.handler.logging.LoggingHandler;
 /**
  * 服务方提供程序
  * 协议帧格式        消息体:请求id|
+ * <p>
+ * 报错解决：https://stackoverflow.com/questions/57885828/netty-cannot-access-class-jdk-internal-misc-unsafe
+ * --add-opens java.base/jdk.internal.misc=ALL-UNNAMED
+ * -Dio.netty.tryReflectionSetAccessible=true
  */
 public final class RpcServer {
     public static void main(String[] args) throws Exception {

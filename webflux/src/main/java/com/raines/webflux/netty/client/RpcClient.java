@@ -11,6 +11,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import io.reactivex.Flowable;
+import io.reactivex.processors.ReplayProcessor;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -126,6 +128,29 @@ public class RpcClient {
         // 6.同步等待结果
         String result = future.get();
         return result;
+    }
+
+    // 异步转反应式:把异步调用改造为Reactive编程风格
+    // 基于RxJava让异步调用返回结果为Flowable，其实我们只需要把返回的CompletableFuture转换为Flowable即可
+    public Flowable<String> rpcAsyncCallFlowable(String msg) {
+        // 1.1 使用defer操作，当订阅时候在执行rpc调用
+        return Flowable.defer(() -> {
+            // 1.2创建含有一个元素的流
+            final ReplayProcessor<String> flowable = ReplayProcessor.createWithSize(1);
+            // 1.3具体执行RPC调用
+            CompletableFuture<String> future = rpcAsyncCall(msg);
+            // 1.4设置回调函数等rpc结果返回后设置结果到流对象
+            future.whenComplete((v, t) -> {
+                if (t != null) {// 1.4.1结果异常则发射错误信息
+                    flowable.onError(t);
+                } else {// 1.4.2结果OK，则发射出rpc返回结果
+                    flowable.onNext(v);
+                    // 1.4.3结束流
+                    flowable.onComplete();
+                }
+            });
+            return flowable;
+        });
     }
 
 }

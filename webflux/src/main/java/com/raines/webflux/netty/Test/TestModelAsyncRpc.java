@@ -5,6 +5,9 @@ import com.raines.webflux.netty.client.RpcClient;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * 测试如何使用RpcServer和RpcClient
+ */
 public class TestModelAsyncRpc {
 
     private static final RpcClient rpcClient = new RpcClient();
