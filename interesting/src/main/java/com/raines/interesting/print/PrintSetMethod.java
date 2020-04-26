@@ -35,10 +35,10 @@ public class PrintSetMethod {
             if (!x.trim().equals("")) {
                 String str = x.trim().substring(0, 1).toUpperCase() + x.substring(1);
                 String strSmall = x.trim().substring(0, 1) + x.substring(1);
-                System.out.print("String "+strSmall+",");
+//                System.out.print("String "+strSmall+",");
 //                String get = "importParam.get" + str+"()";
 //                System.out.println("if("+get+"!=null && !("+get+".equals(\"\")"+")){");
-//                System.out.println("tFaultMessage.set"+str+"(" + strSmall + ");");
+                System.out.println("tFaultMessage.set"+str+"(" + strSmall + ");");
 //                System.out.println("updateFenceConfigParam.set"+str.substring(0, 1).toUpperCase() + str.substring(1)+"("+str+");");
 //                System.out.println("}");
             }
@@ -46,8 +46,8 @@ public class PrintSetMethod {
         intList.stream().skip(1).forEach(x -> {
             String str = x.trim().substring(0, 1).toUpperCase() + x.substring(1);
             String strSmall = x.trim().substring(0, 1) + x.substring(1);
-//            System.out.println("tFaultMessage.set"+str+"(" + strSmall + ");");
-            System.out.print("Integer "+strSmall+",");
+            System.out.println("tFaultMessage.set"+str+"(" + strSmall + ");");
+//            System.out.print("Integer "+strSmall+",");
 //            System.out.println("updateFenceConfigParam.set"+str.substring(0, 1).toUpperCase() + str.substring(1)+"("+str+");");
         });
     }
