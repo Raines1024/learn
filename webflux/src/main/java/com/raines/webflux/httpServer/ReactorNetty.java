@@ -23,7 +23,7 @@ public class ReactorNetty {
                         .get("/path/{param}", (request, response) -> response.sendString(Mono.just(request.param("param"))))
                         .ws("/ws", (wsInbound, wsOutbound) -> wsOutbound.send(wsInbound.receive().retain())))
                 .bindNow();
-        //“以阻塞的方式等待服务器关闭。
+        //以阻塞的方式等待服务器关闭。
         //阻塞方式启动服务器，同步等待服务停止
         server.onDispose().block();
     }
