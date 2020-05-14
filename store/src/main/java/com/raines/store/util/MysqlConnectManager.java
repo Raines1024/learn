@@ -17,7 +17,8 @@ public class MysqlConnectManager {
 	private static Connection con = null;
 	
 	private MysqlConnectManager() {
-		try {			
+		try {
+			//注册 JDBC 驱动
 			Class.forName(driver);
 			con = getConn();			
 		} catch (Exception e) {
@@ -39,6 +40,7 @@ public class MysqlConnectManager {
 	public Connection getConn(){
 		if(con == null){
 			try {
+				//连接数据库..
 				con = DriverManager.getConnection(url, username, password);
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -156,7 +158,8 @@ public class MysqlConnectManager {
 		if(!StringTool.isEmpty(whereSql)){
 			sql += " where "+whereSql;
 		}
-		
+
+		//执行查询
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 		

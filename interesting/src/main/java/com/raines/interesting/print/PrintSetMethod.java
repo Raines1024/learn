@@ -12,6 +12,24 @@ import java.util.Scanner;
  */
 public class PrintSetMethod {
 
+    public static void scalaPrint(StringBuffer stringBuffer) {
+        List<String> resultList = new ArrayList<>();
+        int i = 0;
+
+        for (String x : Arrays.asList(stringBuffer.toString().split(","))) {
+            if (i % 2 == 0) {
+                i++;
+                continue;
+            }
+            String s = x.substring(0, 2);
+            System.out.println(s);
+            resultList.add(s);
+        }
+
+        for (String s : resultList) {
+            System.out.println("val " + s + ":java.lang.String = Bytes.toString(result.getValue(Bytes.toBytes(\"f\"), Bytes.toBytes(\"" + s + "\")));");
+        }
+    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -25,6 +43,8 @@ public class PrintSetMethod {
                 break;
             }
         }
+
+
         Arrays.asList(stringBuffer.toString().split("private String ")).forEach(x -> {
             resultList.add(x.split(";")[0]);
         });
@@ -36,9 +56,10 @@ public class PrintSetMethod {
                 String str = x.trim().substring(0, 1).toUpperCase() + x.substring(1);
                 String strSmall = x.trim().substring(0, 1) + x.substring(1);
 //                System.out.print("String "+strSmall+",");
-//                String get = "importParam.get" + str+"()";
+                String get = "lBizCarFault.get" + str+"(),";
+                System.out.println(get);
 //                System.out.println("if("+get+"!=null && !("+get+".equals(\"\")"+")){");
-                System.out.println("tFaultMessage.set"+str+"(" + strSmall + ");");
+//                System.out.println("tFaultMessage.set" + str + "(" + strSmall + ");");
 //                System.out.println("updateFenceConfigParam.set"+str.substring(0, 1).toUpperCase() + str.substring(1)+"("+str+");");
 //                System.out.println("}");
             }
@@ -46,7 +67,9 @@ public class PrintSetMethod {
         intList.stream().skip(1).forEach(x -> {
             String str = x.trim().substring(0, 1).toUpperCase() + x.substring(1);
             String strSmall = x.trim().substring(0, 1) + x.substring(1);
-            System.out.println("tFaultMessage.set"+str+"(" + strSmall + ");");
+            String get = "lBizCarFault.get" + str+"(),";
+            System.out.println(get);
+//            System.out.println("tFaultMessage.set" + str + "(" + strSmall + ");");
 //            System.out.print("Integer "+strSmall+",");
 //            System.out.println("updateFenceConfigParam.set"+str.substring(0, 1).toUpperCase() + str.substring(1)+"("+str+");");
         });
