@@ -33,6 +33,7 @@
         <module>grokking-algorithms</module>
         <module>webflux</module>
         <module>store</module>
+        <module>jvm</module>
     </modules>
 
     <!-- 统一jar -->
