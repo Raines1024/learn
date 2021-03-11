@@ -32,18 +32,9 @@ public class Demo {
         Connection connection = dataSource.getConnection();//获取连接
         //查询出部门编号、部门名称、部门位置、每个部门的员工人数
         String sql = "select * from block_info;";
-        //查询经理的信息。显示员工姓名，员工工资，职务名称，职务描述，部门名称，部门位置，工资等级
-        String sql1 = "select * from block_info;";
-
-        //查询所有员工信息。显示员工姓名，员工工资，职务名称，职务描述，部门名称，部门位置，工资等级
-        String sql2 = " select * from block_info;";
         //获取语句执行者等一系列操作
         PreparedStatement ps = connection.prepareStatement(sql);
-//        PreparedStatement ps1 = connection.prepareStatement(sql1);
-//        PreparedStatement ps2 = connection.prepareStatement(sql2);
         ResultSet resultSet = ps.executeQuery();
-//        ResultSet resultSet1 = ps1.executeQuery();
-//        ResultSet resultSet2 = ps2.executeQuery();
         while (resultSet.next()) {
 //            int id = resultSet.getInt("id");
 //            String dname = resultSet.getString("dname");
@@ -52,36 +43,8 @@ public class Demo {
             System.out.println(resultSet.getString("name"));
 
         }
-        System.out.println("===================================================================");
-//        while (resultSet1.next()) {
-//            String ename = resultSet1.getString("ename");
-//            int salary = resultSet1.getInt("salary");
-//            String jname = resultSet1.getString("jname");
-//            String description = resultSet1.getString("description");
-//            String dname = resultSet1.getString("dname");
-//            String loc = resultSet1.getString("loc");
-//            int grade = resultSet1.getInt("grade");
-//            System.out.println("ename=" + ename + " salary=" + salary + " jname=" + jname + " description=" + description
-//                    + " dname=" + dname + " loc=" + loc + " grade=" + grade);
-//
-//        }
-//        System.out.println("===================================================================");
-//        while (resultSet2.next()) {
-//            String ename = resultSet2.getString("ename");
-//            int salary = resultSet2.getInt("salary");
-//            String jname = resultSet2.getString("jname");
-//            String description = resultSet2.getString("description");
-//            String dname = resultSet2.getString("dname");
-//            String loc = resultSet2.getString("loc");
-//            int grade = resultSet2.getInt("grade");
-//            System.out.println("ename=" + ename + " salary=" + salary + " jname=" + jname + " description=" + description
-//                    + " dname=" + dname + " loc=" + loc + " grade=" + grade);
-//
-//        }
         //释放资源
         closeResource(resultSet, ps, connection);
-//        closeResource(resultSet1, ps1, null);
-//        closeResource(resultSet2, ps2, null);
 
     }
 
