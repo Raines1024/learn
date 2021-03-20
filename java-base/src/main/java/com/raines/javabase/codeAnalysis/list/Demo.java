@@ -20,10 +20,10 @@ public class Demo {
         HashMap<String,String> map = new HashMap<>();
         map.put("1","aasdf");
         map.put("2","q2erw");
-        map.get()
-        map.entrySet().forEach(k -> {
-            k.getKey()
-            System.out.println(k);
-        });
+//        map.get()
+//        map.entrySet().forEach(k -> {
+//            k.getKey()
+//            System.out.println(k);
+//        });
     }
 }

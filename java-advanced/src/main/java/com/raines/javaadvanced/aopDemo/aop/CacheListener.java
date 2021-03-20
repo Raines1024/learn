@@ -28,7 +28,7 @@ public class CacheListener {
 	/**
 	 * 定义Pointcut，Pointcut的名称，此方法不能有返回值，该方法只是一个标示
 	 */
-	@Pointcut("@annotation(com.raines.raineslearn.aopDemo.annotation.CacheRefresh)")
+	@Pointcut("@annotation(com.raines.javaadvanced.aopDemo.annotation.CacheRefresh)")
 	public void cacheAspect() {
 		System.out.println("我是一个切入点");
 	}
