@@ -6,6 +6,9 @@ import org.springframework.util.Assert;
 import java.lang.reflect.Field;
 import java.util.*;
 
+/**
+ * 对象复制
+ */
 public class BeanUtil {
 
     public static void main(String[] args) {

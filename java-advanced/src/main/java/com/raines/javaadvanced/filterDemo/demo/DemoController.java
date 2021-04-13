@@ -1,6 +1,7 @@
 package com.raines.javaadvanced.filterDemo.demo;
 
 import com.raines.javaadvanced.aopDemo.annotation.CacheRefresh;
+import com.raines.javaadvanced.expectionprocess.LogicException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ public class DemoController {
 
     @GetMapping("/login")
     public boolean login() {
-        return false;
+        throw new LogicException("error!!!");
     }
 
 }
