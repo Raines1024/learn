@@ -6,6 +6,7 @@ target/
 
 ### STS ###
 .apt_generated
+.DS_Store
 .classpath
 .factorypath
 .project
