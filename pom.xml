@@ -34,6 +34,7 @@
         <module>webflux</module>
         <module>store</module>
         <module>jvm</module>
+        <module>mysql-advanced</module>
     </modules>
 
     <!-- 统一jar -->
