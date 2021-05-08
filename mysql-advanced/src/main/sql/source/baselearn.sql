@@ -83,11 +83,11 @@ CREATE TABLE `student`
 -- ----------------------------
 BEGIN;
 INSERT INTO `student`
-VALUES (1, ''raines'', 25, 1);
+VALUES (1, 'raines', 25, 1);
 INSERT INTO `student`
-VALUES (2, ''tom'', 23, 5);
+VALUES (2, 'tom', 23, 5);
 INSERT INTO `student`
-VALUES (3, ''tony'', 29, 7);
+VALUES (3, 'tony', 29, 7);
 COMMIT;
 
 SET
