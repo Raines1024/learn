@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSON;
  * 冒泡排序算法
  * 它在重复访问要排序的元素列时，会依此比较相邻的两个元素，如果左边的元素大于右边的元素，就将二者交换位置，如此重复，直到没有相邻的元素需要交换位置，这时该列表的元素排序完成。
  */
-public class bubbleSort {
+public class BubbleSort {
 
     /**
      * 升序冒泡排序算法
