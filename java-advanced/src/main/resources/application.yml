@@ -1,2 +1,7 @@
 server:
   port: 3001
+
+gp:
+  redission:
+    host: 172.16.100.21
+    port: 6379

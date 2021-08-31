@@ -27,6 +27,11 @@
             <artifactId>caffeine</artifactId>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>com.raines.javaadvanced</groupId>-->
+<!--            <artifactId>redis-spring-boot-starter</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -35,7 +40,7 @@
         <dependency>
             <groupId>com.raines</groupId>
             <artifactId>comm</artifactId>
-            <scope>compile</scope>
+            <version>1.0</version>
         </dependency>
         <!--spring boot依赖-->
         <dependency>

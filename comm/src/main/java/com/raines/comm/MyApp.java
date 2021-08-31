@@ -82,7 +82,7 @@ public class MyApp {
                 doCard();
                 System.exit(0);
             }
-        }, $.getDateForString("20210828121204", "yyyyMMddHHmmss"));
+        }, $.getDateForString("20210830120712", "yyyyMMddHHmmss"));
 //        new Timer("timer - ").schedule(new TimerTask() {
 //            @Override
 //            public void run() {
@@ -101,7 +101,7 @@ public class MyApp {
                 .target(GitHub.class, "http://kaoqin.lovol.com/");
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("token", "1");
-        headerMap.put("bindCode", "");
+        headerMap.put("bindCode", "80970FCB-41C6-4387-B3EF-7E679FD52347");
         Contributor contributor = github.contributors(headerMap, time + "");
         System.out.println(contributor.data + "===" + contributor.code + "===" + contributor.msg + " (" + contributor.timestamp + ")");
     }
