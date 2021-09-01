@@ -82,7 +82,7 @@ public class MyApp {
                 doCard();
                 System.exit(0);
             }
-        }, $.getDateForString("20210830120712", "yyyyMMddHHmmss"));
+        }, $.getDateForString("20210831121452", "yyyyMMddHHmmss"));
 //        new Timer("timer - ").schedule(new TimerTask() {
 //            @Override
 //            public void run() {
