@@ -36,6 +36,7 @@
         <module>jvm</module>
         <module>mysql-advanced</module>
         <module>nacos-sample-provider</module>
+        <module>spring-cloud-nacos-sample-provider</module>
     </modules>
 
     <!-- 统一jar -->
