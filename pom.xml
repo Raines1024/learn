@@ -35,6 +35,7 @@
         <module>store</module>
         <module>jvm</module>
         <module>mysql-advanced</module>
+        <module>nacos-sample-provider</module>
     </modules>
 
     <!-- 统一jar -->
