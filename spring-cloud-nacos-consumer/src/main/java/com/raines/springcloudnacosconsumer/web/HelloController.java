@@ -5,6 +5,9 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 测试Dubbo服务的访问
+ */
 @RestController
 public class HelloController {
 
