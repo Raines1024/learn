@@ -8,6 +8,7 @@ public class HelloServiceImpl implements IHelloService {
 
     @Override
     public String sayHello(String name) {
+        System.out.println("nacos sample provider");
         return "Hello World:"+name;
     }
 
