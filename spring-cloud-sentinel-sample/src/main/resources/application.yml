@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-cloud-sentinel-sample
+  cloud:
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:7777
+      servlet:
+        block-page: {url}
