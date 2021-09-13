@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 限流后返回统一json格式错误
+ */
 @Service
 public class CustomUrlBlockHandler implements UrlBlockHandler {
 
