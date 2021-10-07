@@ -1,0 +1,76 @@
+apiVersion: v1  #版本号，例如v1
+kind: Pod #Pod
+metadata: #元数据
+  name: string  #Pod的名称，命名规范需符合RFC1035规范
+  namespace: string #Pod所属的命名空间，默认值为default
+  labels: #自定义标签列表
+    - name: string
+  annotations:  #自定义注解列表
+    - name: string
+spec: #Pod中容器的详细定义
+  containers: #Pod中等容器列表
+    - name: string  #容器的名称，命名规范需符合RFC1035规范
+      image: string #容器的镜像名称
+      imagePullPolicy: [Always|Never|IfNotPresent]  #容器的拉取策略，默认值为Always，表示每次都尝试重新拉取镜像
+      command: [string] #容器的启动命令列表，如果不指定，则使用镜像打包时使用的启动命令
+      args: [string]  #容器的启动命令参数列表
+      workingDir: string  #容器的工作目录
+      volumeMounts: #挂载到容器内部的存储卷配置
+        - name: string  #引用Pod定义的共享存储卷的名称，需使用volumes[]部分定义的共享存储卷名称
+          mountPath: string #存储卷在容器内挂载的绝对路径，应少于512个字符
+          readOnly: boolean #是否为只读模式，默认为读写模式
+      ports:  #容器需要暴露的端口号列表
+        - name: string  #端口的名称
+          containerPort: int  #容器需要监听的端口号
+          hostPort: int #容器所在主机需要监听的端口号，默认与containerPort相同。设置hostPort时，同一台宿主机将无法启动该容器的第2份副本
+          protocol: string  #端口协议，支持TCP和UDP，默认值为TCP
+      env:  #容器运行前需设置的环境变量列表
+        - name: string  #环境变量的名称
+          value: string #环境变量的值
+      resources:  #资源限制和资源请求的设置
+        limits: #资源限制的设置
+          cpu: string #CPU限制，单位为core数
+          memory: string  #内存限制，单位可以为MiB、GiB等
+        requests: #资源限制的设置
+          cpu: string #CPU请求，单位为core数，容器启动的初始可用数量
+          memory: string  #内存请求，单位可以为MiB、GiB等，容器启动的初始可用数量
+      livenessProbe:  #对Pod内各容器健康检查的设置，当探测无响应几次之后，系统将自动重启该容器
+        exec: #对Pod内各容器健康检查的设置，exec方式
+          command: [string] #exec方式需要指定的命令或者脚本
+        httpGet:  #对Pod内各容器健康检查的设置，HTTPGet方式。需指定path、port
+          path: string
+          port: number
+          host: string
+          scheme: string
+          httpHeaders:
+            - name: string
+              value: string
+        tcpSocket:  #对Pod内各容器健康检查的设置，tcpSocket方式
+          port: number
+        initialDelaySeconds: 0  #容器启动完成后首次探测的时间，单位为s
+        timeoutSeconds: 0 #对容器健康检查的探测等待响应的超时时间设置，单位为s,默认为为1s，若超过该超时时间设置，则将认为该容器不健康，会重启该容器
+        periodSeconds: 0  #对容器健康检查的定期探测时间设置，单位为s，默认10s探测一次
+        successThreshold: 0
+        failureThreshold: 0
+      securityContext:
+        privileged: false
+  restartPolicy: [Always | Never|OnFailure] #Pod的重启策略，默认值为Always，Pod一旦终止运行，则无论容器是如何终止的，kubelet都将重启它
+  nodeSelector: object  #设置Node的Label，以key:value格式指定，Pod将被调度到具有这些Label的Node上
+  imagePullSecrets: #pull镜像时使用的Secret名称，以name:secretkey格式指定
+    - name: string
+  hostNetwork: false  #是否使用主机网络模式，默认值为false，设置为true表示容器使用宿主机网络
+  volumes:  #在该Pod上定义的共享存储卷列表
+    - name: string  #共享存储卷的名称，在一个Pod中每个存储卷定义一个名称，命名规范需符合RFC1035规范
+      emptyDir: {}  #类型为emptyDir的存储卷，表示与Pod同生命周期的一个临时目录，其值为一个空对象
+      hostPath: #类型为hostPath的存储卷，表示Pod容器挂载的宿主机目录，通过volumes[].hostPath.path指定
+        path: string  #Pod容器挂载的宿主机目录
+      secret: #类型为secret的存储卷，表示挂载集群预定义的secret对象到容器内部
+        secretName: string  #
+        items:
+          - key: string
+            path: string
+      configMap:  #类型为configMap的存储卷，表示挂载集群预定义的configMap对象到容器内部
+        name: string
+        items:
+          - key: string
+            path: string
