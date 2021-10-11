@@ -24,6 +24,11 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>com.ice</groupId>
+            <artifactId>ice-tool</artifactId>
+            <version>1.4.4</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>

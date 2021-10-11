@@ -87,7 +87,6 @@ public class ByteTransFile {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 

@@ -15,9 +15,7 @@ import java.util.Arrays;
 public class FileTransByte {
 
     //nio方式
-    private static byte[] nioStyle() throws Exception {
-        String filePath = "/Users/raines/Desktop/my/demo/abc.txt";
-
+    private static byte[] nioStyle(String filePath) throws Exception {
         byte[] bFile = Files.readAllBytes(new File(filePath).toPath());
         //or this
 //        byte[] bFile = Files.readAllBytes(Paths.get(filePath));
