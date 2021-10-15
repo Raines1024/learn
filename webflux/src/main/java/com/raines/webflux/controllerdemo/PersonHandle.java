@@ -1,5 +1,6 @@
 package com.raines.webflux.controllerdemo;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
@@ -9,6 +10,7 @@ import reactor.core.scheduler.Schedulers;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
 /**
  * 注解式使用 WebFlux
@@ -49,6 +51,23 @@ public class PersonHandle {
                     System.out.println(Thread.currentThread().getName());
                     return e;
                 });
+    }
+
+    /**
+     * Flux : 返回0-n个元素
+     * 注：需要指定MediaType
+     */
+    @GetMapping(value = "/eventStream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    private Flux<String> flux() {
+        Flux<String> result = Flux
+                .fromStream(IntStream.range(1, 5).mapToObj(i -> {
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                    }
+                    return "flux data--" + i;
+                }));
+        return result;
     }
 
 
