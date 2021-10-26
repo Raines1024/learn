@@ -74,14 +74,14 @@ class RealParam {
 
 public class MyApp {
     public static void main(String... args) throws JsonProcessingException, ParseException {
-        doCard();
-//        new Timer("timer - ").schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                System.out.println($.getDateString(new Date().getTime(), "HHmmss") + " run ");
-//                doCard();
-//            }
-//        }, $.getDateForString("20211012120318", "yyyyMMddHHmmss"));
+        new Timer("timer - ").schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println($.getDateString(new Date().getTime(), "HHmmss") + " run ");
+                doCard();
+                System.exit(0);
+            }
+        }, $.getDateForString("20211023120629", "yyyyMMddHHmmss"));
 //        new Timer("timer - ").schedule(new TimerTask() {
 //            @Override
 //            public void run() {
@@ -89,12 +89,12 @@ public class MyApp {
 //                doCard();
 //                System.exit(0);
 //            }
-//        }, $.getDateForString("20211012124106", "yyyyMMddHHmmss"));
+//        }, $.getDateForString("20211019124803", "yyyyMMddHHmmss"));
     }
 
 
     public static void doCard() {
-        long time = new Date().getTime() / 1000-290;
+        long time = new Date().getTime() / 1000;
         GitHub github = Feign.builder()
                 .decoder(new JacksonDecoder())
                 .target(GitHub.class, "http://kaoqin.lovol.com/");
