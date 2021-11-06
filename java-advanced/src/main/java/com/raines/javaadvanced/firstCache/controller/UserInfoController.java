@@ -1,5 +1,6 @@
 package com.raines.javaadvanced.firstCache.controller;
 
+import com.github.benmanes.caffeine.cache.Cache;
 import com.raines.javaadvanced.firstCache.service.UserInfoService;
 import com.raines.javaadvanced.firstCache.vo.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,11 @@ public class UserInfoController {
 
     @Autowired
     private UserInfoService userInfoService;
+
+    @Autowired
+    Cache<String, Object> caffeineCache;
+
+
 
     @GetMapping("/userInfo/{id}")
     public Object getUserInfo(@PathVariable Integer id) {

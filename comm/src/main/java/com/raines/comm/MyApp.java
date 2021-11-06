@@ -74,14 +74,14 @@ class RealParam {
 
 public class MyApp {
     public static void main(String... args) throws JsonProcessingException, ParseException {
-        new Timer("timer - ").schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println($.getDateString(new Date().getTime(), "HHmmss") + " run ");
-                doCard();
-                System.exit(0);
-            }
-        }, $.getDateForString("20211023120629", "yyyyMMddHHmmss"));
+        System.out.println($.getDateForString("20211105120841", "yyyyMMddHHmmss").getTime());
+//        new Timer("timer - ").schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                System.out.println($.getDateString(new Date().getTime(), "HHmmss") + " run ");
+//                doCard();
+//            }
+//        }, $.getDateForString("20211104120639", "yyyyMMddHHmmss"));
 //        new Timer("timer - ").schedule(new TimerTask() {
 //            @Override
 //            public void run() {
@@ -89,7 +89,7 @@ public class MyApp {
 //                doCard();
 //                System.exit(0);
 //            }
-//        }, $.getDateForString("20211019124803", "yyyyMMddHHmmss"));
+//        }, $.getDateForString("20211102124910", "yyyyMMddHHmmss"));
     }
 
 
