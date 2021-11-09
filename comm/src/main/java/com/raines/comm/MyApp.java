@@ -4,8 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.*;
 import feign.jackson.JacksonDecoder;
+import kong.unirest.Unirest;
 import lombok.SneakyThrows;
 
+import java.net.http.HttpResponse;
 import java.text.ParseException;
 import java.util.*;
 
@@ -73,15 +75,19 @@ class RealParam {
 }
 
 public class MyApp {
-    public static void main(String... args) throws JsonProcessingException, ParseException {
-        System.out.println($.getDateForString("20211105120841", "yyyyMMddHHmmss").getTime());
+    public static void main(String... args) throws Exception {
+
+        demo($.formatDate(new Date(),"yyyy-MM-dd"));
+//        Thread.sleep(1000L);
+//        doCard();
+//        System.out.println($.getDateForString("20211105120841", "yyyyMMddHHmmss").getTime());
 //        new Timer("timer - ").schedule(new TimerTask() {
 //            @Override
 //            public void run() {
 //                System.out.println($.getDateString(new Date().getTime(), "HHmmss") + " run ");
 //                doCard();
 //            }
-//        }, $.getDateForString("20211104120639", "yyyyMMddHHmmss"));
+//        }, $.getDateForString("20211106120812", "yyyyMMddHHmmss"));
 //        new Timer("timer - ").schedule(new TimerTask() {
 //            @Override
 //            public void run() {
@@ -90,6 +96,15 @@ public class MyApp {
 //                System.exit(0);
 //            }
 //        }, $.getDateForString("20211102124910", "yyyyMMddHHmmss"));
+    }
+
+    public static void demo(String day) {
+        String response = Unirest.post("https://sinolookmall.com.cn/EnjoyMobileWSCXCX/Enjoy/Service")
+                .header("sign", "BE3B0142D30D5513F1F4953C123CC86E")
+                .header("Content-Type", "application/json")
+                .body("{\n\t\"UniqueKey\": \"移动会员签到记录\",\n\t\"MethodName\": \"Sign\",\n\t\"UserNo\": \"\",\n\t\"ClientTime\": \""+day+"T03:06:12.091Z\",\n\t\"ObjectData\": {\n\t\t\"c_string_parm1\": \"900030203\",\n\t\t\"c_string_parm2\": \"25ee91a8-d1ff-4c84-9723-77a525a8a3de\",\n\t\t\"c_string_parm3\": \"ouQTz5CvmAD1tpdP3UO0tZNfdfYQ\",\n\t\t\"c_string_parm4\": \"9999000127153\"\n\t},\n\t\"Tag\": null,\n\t\"Channel\": \"BBC商城(微信小程序)\",\n\t\"SessionId\": \"a1195ad3-e0e3-4c33-a6a7-a5132359e1d3\"\n}")
+                .asString().getBody();
+        System.out.println(response);
     }
 
 
