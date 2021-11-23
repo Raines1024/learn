@@ -42,6 +42,7 @@
         <module>spring-cloud-nacos-config-demo</module>
         <module>spring-cloud-sentinel-sample</module>
         <module>kubernetes-practice</module>
+        <module>main</module>
     </modules>
 
     <!-- 统一jar -->

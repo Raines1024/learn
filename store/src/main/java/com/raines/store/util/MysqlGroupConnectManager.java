@@ -1,39 +1,49 @@
 package com.raines.store.util;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import net.sf.json.JSONObject;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.*;
 
-/**
- * mysql链接（无连接池
- */
-public class MysqlConnectManager {
 
-	private static ResourceBundle rb = ResourceBundle.getBundle("systemParamters");
-	private static String driver = rb.getString("mysql.driverClass");
-	private static String url = rb.getString("mysql.jdbcUrl");
-	private static String username = rb.getString("mysql.user");
-	private static String password = rb.getString("mysql.password");
-	
-	private volatile static MysqlConnectManager singleton = null;
+/**
+ * mysql工具类（有连接池
+ */
+public class MysqlGroupConnectManager {
+
+	static final String jdbcUrl = "jdbc:mysql://172.29.32.20:3306/learnjdbc?useSSL=false&characterEncoding=utf8";
+	static final String jdbcUsername = "learn";
+	static final String jdbcPassword = "learnpassword";
+	static HikariConfig config = new HikariConfig();
+
+	static {
+		config.setJdbcUrl(jdbcUrl);
+		config.setUsername(jdbcUsername);
+		config.setPassword(jdbcPassword);
+		config.addDataSourceProperty("cachePrepStmts", "true");
+		config.addDataSourceProperty("prepStmtCacheSize", "100");
+		config.addDataSourceProperty("maximumPoolSize", "10");
+	}
+
+	private volatile static MysqlGroupConnectManager singleton = null;
 	private static Connection con = null;
-	
-	private MysqlConnectManager() {
+
+	private MysqlGroupConnectManager() {
 		try {
-			//注册 JDBC 驱动
-			Class.forName(driver);
-			con = getConn();			
+			con = new HikariDataSource(config).getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static MysqlConnectManager getInstance() {
+	public static MysqlGroupConnectManager getInstance() {
 		if (singleton == null) {
-			synchronized (MysqlConnectManager.class) {
+			synchronized (MysqlGroupConnectManager.class) {
 				if (singleton == null) {
-					singleton = new MysqlConnectManager();
+					singleton = new MysqlGroupConnectManager();
 				}
 			}
 		}
@@ -44,7 +54,7 @@ public class MysqlConnectManager {
 		if(con == null){
 			try {
 				//连接数据库..
-				con = DriverManager.getConnection(url, username, password);
+				con = new HikariDataSource(config).getConnection();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
