@@ -3,9 +3,16 @@ package com.raines.javaadvanced.notnull;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 我的自定义解析器
+ */
 public class MyParser implements Parser{
 
-    Map<String,Action> map = new HashMap<>();
+    static Map<String,Action> map = new HashMap<>();
+
+    static {
+        map.put("A",()->{System.out.println("A plan start.");});
+    }
 
     private static Action DO_NOTHING = () -> {
         //do nothing

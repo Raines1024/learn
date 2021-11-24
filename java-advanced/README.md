@@ -9,6 +9,7 @@ Caffeine缓存使用
 
 ## algorithms:算法
 
+## notnull:优雅避免空指针
 
 
 

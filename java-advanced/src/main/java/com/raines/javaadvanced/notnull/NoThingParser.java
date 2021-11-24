@@ -1,7 +1,7 @@
 package com.raines.javaadvanced.notnull;
 
 /**
- *
+ * 默认解析器（寻找不到的默认处理）
  */
 public class NoThingParser implements Parser{
 
