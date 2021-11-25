@@ -1,5 +1,6 @@
 package com.raines.store.util;
 
+import com.raines.store.hikaricpdemo.util.HikaricpUtils;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import net.sf.json.JSONObject;
@@ -14,26 +15,12 @@ import java.util.*;
  */
 public class MysqlGroupConnectManager {
 
-	static final String jdbcUrl = "jdbc:mysql://172.29.32.20:3306/learnjdbc?useSSL=false&characterEncoding=utf8";
-	static final String jdbcUsername = "learn";
-	static final String jdbcPassword = "learnpassword";
-	static HikariConfig config = new HikariConfig();
-
-	static {
-		config.setJdbcUrl(jdbcUrl);
-		config.setUsername(jdbcUsername);
-		config.setPassword(jdbcPassword);
-		config.addDataSourceProperty("cachePrepStmts", "true");
-		config.addDataSourceProperty("prepStmtCacheSize", "100");
-		config.addDataSourceProperty("maximumPoolSize", "10");
-	}
-
 	private volatile static MysqlGroupConnectManager singleton = null;
 	private static Connection con = null;
 
 	private MysqlGroupConnectManager() {
 		try {
-			con = new HikariDataSource(config).getConnection();
+			con = HikaricpUtils.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -54,7 +41,7 @@ public class MysqlGroupConnectManager {
 		if(con == null){
 			try {
 				//连接数据库..
-				con = new HikariDataSource(config).getConnection();
+				con = HikaricpUtils.getConnection();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -83,6 +70,12 @@ public class MysqlGroupConnectManager {
 		}
 		if(closeConn)
 			closeConn();
+	}
+
+	public static void main(String[] args) {
+		for (Map<String, Object> map : MysqlGroupConnectManager.getInstance().queryMysql("username", "user", null, true)) {
+			System.out.println(map);
+		}
 	}
 	
 	public List<Map<String, Object>> queryMysql(String columns, String tableName, String whereSql, Boolean closeConn){

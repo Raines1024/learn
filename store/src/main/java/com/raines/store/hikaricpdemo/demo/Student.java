@@ -1,4 +1,4 @@
-package com.raines.store.hikaricpdemo;
+package com.raines.store.hikaricpdemo.demo;
 
 public class Student {
 

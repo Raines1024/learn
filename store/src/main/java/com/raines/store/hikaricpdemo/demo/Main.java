@@ -1,4 +1,4 @@
-package com.raines.store.hikaricpdemo;
+package com.raines.store.hikaricpdemo.demo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
