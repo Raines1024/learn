@@ -4,6 +4,7 @@ package com.raines.comm;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -46,6 +47,10 @@ public class $ {
     }
 
     public static void main(String[] args) {
+        String pattern ="^[0-9a-zA-Z]{1,}$";
+        boolean isMatch = Pattern.matches(pattern, "LOV234");
+        System.out.println(isMatch);
+
 //        System.out.println(Long.valueOf("ffff",16).toString());
 //        System.out.println(Long.toHexString(11));
 //        System.out.println(String.format("%06d", Integer.parseInt("123")));

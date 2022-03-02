@@ -10,6 +10,7 @@ import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import com.raines.javaadvanced.aopDemo.annotation.CacheRefresh;
 import com.raines.javaadvanced.expectionprocess.LogicException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,10 +21,16 @@ import java.util.List;
 @RequestMapping("/demo")
 public class DemoController {
 
+    @PostMapping("/demo2")
+    public int sd(){
+        return 111;
+    }
 
-    @CacheRefresh
+
+//    @CacheRefresh
     @GetMapping("/create")
     public boolean create() {
+        System.out.println("--------");
         return true;
     }
 

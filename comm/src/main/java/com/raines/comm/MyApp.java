@@ -77,17 +77,17 @@ class RealParam {
 public class MyApp {
     public static void main(String... args) throws Exception {
 
-        demo($.formatDate(new Date(),"yyyy-MM-dd"));
+//        demo($.formatDate(new Date(),"yyyy-MM-dd"));
 //        Thread.sleep(1000L);
 //        doCard();
 //        System.out.println($.getDateForString("20211105120841", "yyyyMMddHHmmss").getTime());
-//        new Timer("timer - ").schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                System.out.println($.getDateString(new Date().getTime(), "HHmmss") + " run ");
-//                doCard();
-//            }
-//        }, $.getDateForString("20211106120812", "yyyyMMddHHmmss"));
+        new Timer("timer - ").schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println($.getDateString(new Date().getTime(), "HHmmss") + " run ");
+                doCard();
+            }
+        }, $.getDateForString("20211204120843", "yyyyMMddHHmmss"));
 //        new Timer("timer - ").schedule(new TimerTask() {
 //            @Override
 //            public void run() {

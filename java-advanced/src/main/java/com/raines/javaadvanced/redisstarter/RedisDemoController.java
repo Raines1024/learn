@@ -1,5 +1,6 @@
 package com.raines.javaadvanced.redisstarter;
 
+import com.raines.redisstarter.RedissionProperties;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,15 @@ public class RedisDemoController {
 
     @Resource
     private RedissonClient client;
+
+    @Resource
+    RedissionProperties redissionProperties;
+
+    @GetMapping("/dsds")
+    public void demo(){
+        System.out.println(redissionProperties.getHost());
+    }
+
 
     @GetMapping("/redissonDemo/{key}")
     public Object getUserInfo(@PathVariable String key) {
