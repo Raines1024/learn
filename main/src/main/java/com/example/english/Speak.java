@@ -5,8 +5,10 @@ public class Speak {
     public static  void openExe(String file) {
         try
         {
+            ///Applications/IntelliJ\ IDEA.app
+//            String[] cmd = { "sh", "-c", "open /System/Applications/Music.app /Users/raines/PycharmProjects/untitled/"+file+".mp3 && open /System/Applications/Utilities/Terminal.app" };
 
-            String[] cmd = { "sh", "-c", "open /System/Applications/Music.app /Users/raines/PycharmProjects/untitled/"+file+".mp3 && open /System/Applications/Utilities/Terminal.app" };
+            String[] cmd = { "sh", "-c", "open /System/Applications/Music.app /Users/raines/PycharmProjects/untitled/"+file+".mp3 && open /Applications/IntelliJ\\ IDEA.app" };
 
 //            String[] cmd = { "sh", "-c", "open /System/Applications/Music.app /Users/raines/PycharmProjects/untitled/"+file+".mp3" };
 

@@ -14,44 +14,59 @@ public class Practice {
     static int start = 0;
     static boolean flag = false;
     static long time = 0;
-    static void  init (){
+    static boolean succFlag = false;
 
-
+    static void init() {
         System.out.println("是否换行显示中文注释，默认否");
         try {
             String input = myScanner.next();
-            if ("是".equals(input.trim())){
+            if ("是".equals(input.trim())) {
                 flag = true;
-            }else{
+            } else {
                 flag = false;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
         }
         System.out.println("注释需要延迟多少秒？默认0");
         try {
             String input = myScanner.next();
-            time = Long.parseLong(input)*1000;
-        }catch (Exception e){
+            time = Long.parseLong(input) * 1000;
+        } catch (Exception e) {
             System.err.println("非数字，无延迟");
+        }
+        System.out.println("是否需要背诵模式，默认否");
+        try {
+            String input = myScanner.next();
+            if ("是".equals(input.trim())) {
+                succFlag = true;
+            } else {
+                succFlag = false;
+            }
+        } catch (Exception e) {
         }
 
     }
 
-    public static List<Map<String,Object>> getWords() {
-        return MysqlConnectManager.getInstance().queryMysql("id,word,chinese", "english", null, false);
+    public static List<Map<String, Object>> getWords() {
+        return MysqlConnectManager.getInstance().queryMysql("id,word,chinese,flag", "english", "flag != 1", false);
+    }
+
+    public static void updateWord(String word) {
+        MysqlConnectManager.getInstance().executeMysql("UPDATE english SET flag = 1 WHERE word = '" + word + "'", false);
     }
 
     static List<String> w = new ArrayList<>();
     static List<String> c = new ArrayList<>();
+
     public static void main(String[] args) throws InterruptedException {
-        List<Map<String,Object>> list = getWords();
+        List<Map<String, Object>> list = getWords();
         w = list.stream().map(x -> x.get("word").toString()).collect(Collectors.toList());
         c = list.stream().map(x -> x.get("chinese").toString()).collect(Collectors.toList());
         System.out.println("开始单词数，默认从头开始");
         try {
             String input = myScanner.next();
-            start = Integer.parseInt(input)-1;
-        }catch (Exception e){
+            start = Integer.parseInt(input) - 1;
+        } catch (Exception e) {
             System.err.println("非数字，从头开始");
         }
         init();
@@ -74,14 +89,17 @@ public class Practice {
 //            }
 //            list.add(singleWord);
 
-            System.out.println(singleWord+"    "+c.get(i));
+            if (!succFlag) {
+                System.out.print(singleWord + "    ");
+            }
+            System.out.println(c.get(i));
             Speak.openExe(singleWord);
 
-            if (flag){
+            if (flag) {
                 System.out.println("\n");
             }
 
-            if (time>0){
+            if (time > 0) {
                 Thread.sleep(time);
             }
 //            System.out.println(c[i]);
@@ -89,8 +107,8 @@ public class Practice {
             String name = myScanner.next(); //接收用户输入字符串
 
 
-            writeFile(formatDate(new Date(),null)+"nums"+i+"单词--->"+singleWord+"\n");
-            judge(singleWord,name,i);
+            writeFile(formatDate(new Date(), null) + "nums" + i + "单词--->" + singleWord + "\n");
+            judge(singleWord, name, i);
         }
     }
 
@@ -107,51 +125,59 @@ public class Practice {
     }
 
     static void reward(int i) throws InterruptedException {
-        String num = i+1+"";
-        if (num.length()>2){
-            num = num.substring(num.length()-2);
-            if ("00".equals(num)){
-                System.out.println(i+1+"又学会了100个单词，晓龙加油鸭！是否重新学习刚才的100个单词呢？");
-                if ("是".equals(myScanner.next())){
+        String num = i + 1 + "";
+        if (num.length() > 2) {
+            num = num.substring(num.length() - 2);
+            if ("00".equals(num)) {
+                System.out.println(i + 1 + "又学会了100个单词，晓龙加油鸭！是否重新学习刚才的100个单词呢？");
+                if ("是".equals(myScanner.next())) {
 //                    list = new ArrayList();
-                    loop(i+1-100);
+                    loop(i + 1 - 100);
                 }
             }
         }
     }
 
-    static boolean judge(String old,String newest,int i){
-        if (newest.equals("修改配置")){
+    static String errWord = "";
+
+    static boolean judge(String old, String newest, int i) {
+        if (newest.equals("修改配置")) {
             init();
-            return judge(old,myScanner.next(),i);
+            return judge(old, myScanner.next(), i);
         }
-        if (old.equals(newest)){
+        if (old.equals(newest)) {
+            if (succFlag && !(errWord.contains(old))) {
+                updateWord(old);
+            }
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             return true;
-        }else {
-            System.err.println("输入错误--->"+old);
-            writeFile("输入错误--->"+old+"\n");
+        } else {
+            if (succFlag){
+                errWord += ","+old+",";
+            }
+            System.err.println("输入错误--->" + old);
+            writeFile("输入错误--->" + old + "\n");
             Speak.openExe(old);
-            return judge(old,myScanner.next(),i);
+            return judge(old, myScanner.next(), i);
         }
     }
 
-    static void writeFile(String data){
-        try{
+    static void writeFile(String data) {
+        try {
 
-            File file =new File("word.txt");
+            File file = new File("word.txt");
 
             //if file doesnt exists, then create it
-            if(!file.exists()){
+            if (!file.exists()) {
                 file.createNewFile();
             }
 
             //true = append file
-            FileWriter fileWritter = new FileWriter(file.getName(),true);
+            FileWriter fileWritter = new FileWriter(file.getName(), true);
             fileWritter.write(data);
             fileWritter.close();
 
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

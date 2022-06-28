@@ -27,6 +27,19 @@
             <artifactId>caffeine</artifactId>
         </dependency>
 
+<!--   strategydesign使用反射依赖     -->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.1.1</version>
+            <optional>true</optional>
+        </dependency>
+
 <!--        <dependency>-->
 <!--            <groupId>com.raines.javaadvanced</groupId>-->
 <!--            <artifactId>redis-spring-boot-starter</artifactId>-->
